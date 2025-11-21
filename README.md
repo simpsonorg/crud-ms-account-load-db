@@ -63,7 +63,6 @@ Database (SQL / NoSQL)
 
 yaml
 
-
 ---
 
 ## Tech Stack
@@ -126,7 +125,6 @@ Running the Service
 Run the application locally:
 
 bash
-Copy code
 python app.py
 The server will start on the configured port (check your config or app.py for default value).
 
@@ -141,6 +139,7 @@ LOG_LEVEL	Logging verbosity level	INFO
 Example .env file:
 
 ini
+Copy code
 DATABASE_URL=postgres://user:password@localhost:5432/accountdb
 PORT=5000
 LOG_LEVEL=DEBUG
@@ -170,6 +169,7 @@ curl http://localhost:5000/accounts
 Update a record:
 
 bash
+Copy code
 curl -X PUT http://localhost:5000/accounts/1 \
      -H "Content-Type: application/json" \
      -d '{"name": "Alice Updated", "balance": 1200}'
@@ -205,7 +205,6 @@ To run this service using Docker:
 Build the Docker image:
 
 bash
-Copy code
 docker build -t crud-ms-account-load-db .
 Run the container:
 
