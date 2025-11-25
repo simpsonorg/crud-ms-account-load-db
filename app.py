@@ -4,7 +4,13 @@ from pydantic import BaseModel
 app = FastAPI(title="crud-ms-account-load-db")
 
 DEMO = {
-    "101": {"customerId": "101", "firstName": "John", "lastName": "Doe", "birthDate": "1990-01-01"}
+    "101": {
+        "customerId": "101",
+        "firstName": "John",
+        "lastName": "Doe",
+        "birthDate": "1990-01-01",
+        "email": "john.doe@example.com"
+    }
 }
 
 class Demographic(BaseModel):
@@ -12,6 +18,7 @@ class Demographic(BaseModel):
     firstName: str | None = None
     lastName: str | None = None
     birthDate: str | None = None
+    email: str | None = None   # <-- NEW FIELD ADDED
 
 @app.get("/demographic/{customerId}")
 def get_demographic(customerId: str):
