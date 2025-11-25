@@ -9,7 +9,7 @@ DEMO = {
         "firstName": "John",
         "lastName": "Doe",
         "birthDate": "1990-01-01",
-        "email": None
+        "email": "john.doe@example.com"
     }
 }
 
@@ -18,21 +18,16 @@ class Demographic(BaseModel):
     firstName: str | None = None
     lastName: str | None = None
     birthDate: str | None = None
-
-    # ✅ NEW FIELD (optional, backward-compatible)
-    email: str | None = None
-
+    email: str | None = None   # <-- NEW FIELD ADDED
 
 @app.get("/demographic/{customerId}")
 def get_demographic(customerId: str):
     return DEMO.get(customerId, {"error": "not-found"})
 
-
 @app.post("/demographic")
 def save_demographic(rec: Demographic):
     DEMO[rec.customerId] = rec.dict()
     return {"status": "saved", "record": rec}
-
 
 @app.get("/health")
 def health():
